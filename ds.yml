@@ -28,7 +28,7 @@ spec:
         name: mysql
 ---
 # MySQL Service
-apiVersion: v1
+apiVersion: app/v1
 kind: Service
 metadata:
   name: mysql-service
