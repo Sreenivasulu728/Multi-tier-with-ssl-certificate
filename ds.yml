@@ -77,8 +77,8 @@ spec:
     ports:
     - port: 80
       targetPort: 8080
-    selector:
-      app:bankapp
+  selector:
+    app:bankapp
 
 
 
