@@ -6,7 +6,7 @@ metadata:
   name: mysql
 spec:
   selector:
-    matchlabels:
+    matchLabels:
       app: mysql
   strategy:
     type: Recreate
@@ -17,15 +17,15 @@ spec:
     spec:
       containers:
       - image: mysql:8
-      name: mysql
-      env:
-      - name: MYSQL_ROOT_PASSWORD
-        value: "Test@123"
-      - name: MYSQL_DATABASE
-        value: "bankappdb"
-      ports:
-      - containerPort: 3306
         name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "Test@123"
+        - name: MYSQL_DATABASE
+          value: "bankappdb"
+        ports:
+        - containerPort: 3306
+          name: mysql
 ---
 # MySQL Service
 apiVersion: apps/v1
@@ -46,7 +46,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchlabels:
+    matchLabels:
       app: bankapp
     template:
       metadata:
@@ -73,11 +73,12 @@ metadata:
   name: bankapp-service
 spec:
   type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 8080
-  selector:
-    app:bankapp
+  containers:
+    ports:
+    - port: 80
+      targetPort: 8080
+    selector:
+      app:bankapp
 
 
 
